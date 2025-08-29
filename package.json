@@ -1,6 +1,6 @@
 {
-  "name": "log-viewer",
-  "displayName": "log-viewer",
+  "name": "log-viewer-tools",
+  "displayName": "log-viewer-tools",
   "description": "Custom extension to view console.log outputs grouped by file and log name directly in VS Code",
   "version": "0.0.1",
   "publisher": "DevamChaudhari",
