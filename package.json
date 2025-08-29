@@ -3,7 +3,7 @@
   "displayName": "log-viewer",
   "description": "Custom extension to view console.log outputs grouped by file and log name directly in VS Code",
   "version": "0.0.1",
-  "publisher": "f368bbab-c94f-6191-82ac-2707b1dad72f",
+  "publisher": "DevamChaudhari",
   "engines": {
     "vscode": "^1.103.0"
   },
