@@ -2,11 +2,12 @@
   "name": "log-viewer-tools",
   "displayName": "log-viewer-tools",
   "description": "Custom extension to view console.log outputs grouped by file and log name directly in VS Code",
-  "version": "0.0.1",
+  "version": "0.0.3",
   "publisher": "DevamChaudhari",
   "engines": {
     "vscode": "^1.103.0"
   },
+  "icon": "images/log-viewer-icon.png",
   "repository": {
     "type": "git",
     "url": "https://github.com/Devamchaudhari/log-viewer.git"
@@ -24,7 +25,7 @@
         {
           "id": "customLogs",
           "name": "Log Viewer",
-          "icon": "resources/log-viewer-icon.svg"
+          "icon": "images/log-viewer-icon.png"
         }
       ]
     },
