@@ -23,6 +23,76 @@ export function activate(context: vscode.ExtensionContext) {
   vscode.workspace.onDidSaveTextDocument((doc) => {
     logProvider.extractLogsFromFile(doc);
   });
+
+  context.subscriptions.push(
+    vscode.commands.registerCommand(
+      "log-viewer.generateLaunchJson",
+      async () => {
+        if (!vscode.workspace.workspaceFolders) {
+          vscode.window.showErrorMessage("No workspace opened.");
+          return;
+        }
+
+        const workspaceRoot = vscode.workspace.workspaceFolders[0].uri.fsPath;
+        const vscodeDir = path.join(workspaceRoot, ".vscode");
+        const launchPath = path.join(vscodeDir, "launch.json");
+
+        if (!fs.existsSync(vscodeDir)) {
+          fs.mkdirSync(vscodeDir);
+        }
+
+        const pkgPath = path.join(workspaceRoot, "package.json");
+        let projectType: "frontend" | "backend" = "backend";
+
+        if (fs.existsSync(pkgPath)) {
+          try {
+            const pkg = JSON.parse(fs.readFileSync(pkgPath, "utf-8"));
+            if (
+              pkg.dependencies?.react ||
+              pkg.dependencies?.next ||
+              pkg.dependencies?.vue
+            ) {
+              projectType = "frontend";
+            }
+          } catch (err) {
+            console.error("Error reading package.json:", err);
+          }
+        }
+
+        const chromeConfig = {
+          version: "0.2.0",
+          configurations: [
+            {
+              type: "chrome",
+              request: "launch",
+              name: "Launch React App",
+              url: "http://localhost:3000",
+              webRoot: "${workspaceFolder}/src",
+            },
+          ],
+        };
+
+        const nodeConfig = {
+          version: "0.2.0",
+          configurations: [
+            {
+              type: "pwa-node",
+              request: "launch",
+              name: "Launch Node App",
+              program: "${workspaceFolder}/server.js",
+            },
+          ],
+        };
+
+        const config = projectType === "frontend" ? chromeConfig : nodeConfig;
+        fs.writeFileSync(launchPath, JSON.stringify(config, null, 2), "utf-8");
+
+        vscode.window.showInformationMessage(
+          `launch.json created for ${projectType} project!`
+        );
+      }
+    )
+  );
 }
 
 class LogTreeProvider implements vscode.TreeDataProvider<LogTreeItem> {

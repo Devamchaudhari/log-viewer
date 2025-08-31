@@ -2,7 +2,7 @@
   "name": "log-viewer-tools",
   "displayName": "log-viewer-tools",
   "description": "Custom extension to view console.log outputs grouped by file and log name directly in VS Code",
-  "version": "0.0.3",
+  "version": "1.1.0",
   "publisher": "DevamChaudhari",
   "engines": {
     "vscode": "^1.103.0"
@@ -33,6 +33,10 @@
       {
         "command": "log-viewer.refresh",
         "title": "Refresh Log Viewer"
+      },
+      {
+        "command": "log-viewer.generateLaunchJson",
+        "title": "Create Launch.json for Debugging"
       }
     ]
   },
