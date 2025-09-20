@@ -76,6 +76,12 @@ This extension contributes the following commands:
 
 ---
 
+## demo video :
+
+[demo link](https://youtu.be/WoJVHxY-6gA?si=Cmd2rdGoWeLIAELm)
+
+---
+
 ## 💡 Contributing
 
 Pull requests and suggestions are welcome!  
